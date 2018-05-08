@@ -15,3 +15,5 @@ Route::get('/', 'PageController@welcome');
 
 Route::get('/about', 'PageController@about');
 Route::get('/contact', 'PageController@contact');
+
+Route::get('/record', 'PageController@record');

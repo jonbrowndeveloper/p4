@@ -12,6 +12,11 @@ class PageController extends Controller
         return view('welcome');
     }
 
+    public function record()
+    {
+        return view('record.record');
+    }
+
     public function about()
     {
         return view('pages.about');

@@ -17,7 +17,7 @@ class Controller extends BaseController
     {
         /* first element of the array is the filepath with regards to the project. Backslash is included*/
         $nav = [
-            'record' => 'Create',
+            'record' => 'Record',
             'about' => 'About',
             'contact' => 'Contact',
         ];

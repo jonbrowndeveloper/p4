@@ -17,11 +17,6 @@
 <body>
 
 <header>
-    <div class='container-fluid'>
-         <div class="title m-b-md">
-            Word Cloud Builder
-         </div>
-    </div>
     @include('modules.nav')
 </header>
 
