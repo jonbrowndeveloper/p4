@@ -13,7 +13,11 @@
 
 Route::get('/', 'PageController@welcome');
 
-Route::get('/about', 'PageController@about');
-Route::get('/contact', 'PageController@contact');
+Route::get('/library', 'PageController@library');
 
-Route::get('/record', 'PageController@record');
+Route::get('/add', 'PageController@add');
+Route::post('/library', 'MusicController@add');
+
+Route::get('/genres', 'PageController@genres');
+
+Route::get('/contact', 'PageController@contact');

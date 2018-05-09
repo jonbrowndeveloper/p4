@@ -8,7 +8,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="#">Recording Bucket</a>
+            <a class="navbar-brand" href="#">Super Music Favorites</a>
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->

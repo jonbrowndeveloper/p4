@@ -17,8 +17,9 @@ class Controller extends BaseController
     {
         /* first element of the array is the filepath with regards to the project. Backslash is included*/
         $nav = [
-            'record' => 'Record',
-            'about' => 'About',
+            'library' => 'Library',
+            'add' => 'Add Music',
+            'genres' => 'Genres',
             'contact' => 'Contact',
         ];
         View::share(['nav' => $nav]);

@@ -12,14 +12,19 @@ class PageController extends Controller
         return view('welcome');
     }
 
-    public function record()
+    public function library()
     {
-        return view('record.record');
+        return view('music.library');
     }
 
-    public function about()
+    public function add()
     {
-        return view('pages.about');
+        return view('music.add');
+    }
+
+    public function genres()
+    {
+        return view('music.genres');
     }
 
     public function contact()
