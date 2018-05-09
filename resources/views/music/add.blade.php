@@ -18,12 +18,21 @@
                     <div class='details'>* Required fields</div>
 
                     <br>
+                    <label for='title'>* Song Name</label>
+                    <input type="text" class="form-control" placeholder="Song Name" value='@if (isset($songName)){{ $songName }}@endif' name='songName' id='songName'>
+                    <br>
+                    <label for='title'>* Artist</label>
+                    <input type="text" class="form-control" placeholder="Artist Name" value='@if (isset($artist)){{ $artist }}@endif' name='artist' id='artist'>
+                    <br>
                     <label for='title'>* Link</label>
-                    <input type="text" class="form-control" placeholder="Youtube Link" @if (isset($songLink)){{ 'value=' . $songLink }}@endif name='songLink' id='songLink'>
+                    <input type="text" class="form-control" placeholder="Youtube Link" value='@if (isset($songLink)){{ $songLink }}@endif' name='songLink' id='songLink'>
                     <br>
-                    <label for='title'>* Genre</label>
-                    <input type="text" class="form-control" placeholder="What type of music is this?" @if (isset($songLink)){{ 'value=' . $songGenre }}@endif name='songGenre' id='songGenre'>
+                    <label for='title'>Comment</label>
+                    <input type="text" class="form-control" placeholder="Add a comment about this music..." value='@if (isset($songComment)){{ $songComment }}@endif' name='songComment' id='songComment'>
                     <br>
+                    <div class='container-fluid'>
+
+                    </div>
                     @if (count($errors) > 0)
                         <div class="alert alert-danger" role="alert">
                             @foreach($errors->all() as $error)
@@ -34,19 +43,12 @@
                     @endif
                     <button type="submit" class="btn btn-primary">Add Song</button>
 
-                    <div class="btn-group" data-toggle="buttons">
-                        <label class="btn btn-primary active">
-                            <input type="checkbox" checked> Option 1 (pre-checked)
-                        </label>
-                        <label class="btn btn-primary">
-                            <input type="checkbox"> Option 2
-                        </label>
-                        <label class="btn btn-primary">
-                            <input type="checkbox"> Option 3
-                        </label>
-                    </div>
                 </form>
 
+                @if (isset($embeddedCode)){{ $embeddedCode }}@endif
+
+                <iframe width="560" height="315" src="https://www.youtube.com/embed/Xb1ijVMk1Ys" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+                
             </div>
             <div class="col-lg-3">
             </div>

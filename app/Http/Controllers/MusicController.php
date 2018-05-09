@@ -2,28 +2,59 @@
 
 namespace App\Http\Controllers;
 
+use Cohensive\Embed\Embed;
 use Illuminate\Http\Request;
+use App\Song;
 
 class MusicController extends Controller
 {
     // function to replace youtube link with embedded version
 
-    // preg_replace("/\s*[a-zA-Z\/\/:\.]*youtube.com\/watch\?v=([a-zA-Z0-9\-_]+)([a-zA-Z0-9\/\*\-\_\?\&\;\%\=\.]*)/i","<iframe width=\"420\" height=\"315\" src=\"//www.youtube.com/embed/$1\" frameborder=\"0\" allowfullscreen></iframe>",$post_details['description']);
+    //
 
     public function add(Request $request)
     {
         $this->validate($request, [
-            'songLink' => 'required',
-            'songGenre' => 'required|digits:4|numeric',
+            'songName' => 'required|alpha_spaces',
+            'artist' => 'required|alpha_spaces',
+            'songLink' => 'required|active_url'
         ]);
 
+        $songName = $request->input('songName');
+        $artist = $request->input('artist');
         $songLink = $request->input('songLink');
-        $songGenre = $request->input('songGenre');
+        $songComment = $request->input('songComment');
+
+        // make  embedded code  out of the original url
+
+        $embed = 'test';
+
+        /*
+         *
+         *
+        $embed = Embed::make('http://youtu.be/uifYHNyH-jA')->parseUrl();
+
+        if ($embed) {
+
+            $embed->setAttribute(['width' => 400]);
+        }*/
+
+        $song = new Song();
+        $song->song_name = $songName;
+        $song->song_url = $songLink;
+        $song->song_embed_code = $embed;
+        $song->song_comment = $songComment;
+        $song->save();
+
+        // Save the song to the database...
 
         return view('music.add')->with([
             // add data to send here
+            'songName' => $songName,
+            'artist' => $artist,
             'songLink' => $songLink,
-            'songGenre' => $songGenre
+            'songComment' => $songComment,
+            'embeddedCode' => $embed
         ]);
     }
 }

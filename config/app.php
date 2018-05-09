@@ -151,6 +151,9 @@ return [
          * Package Service Providers...
          */
 
+        Cohensive\Embed\EmbedServiceProvider::class,
+        Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class,
+
         /*
          * Application Service Providers...
          */
@@ -175,6 +178,7 @@ return [
 
     'aliases' => [
 
+        'Embed' => Cohensive\Embed\Facades\Embed::class,
         'App' => Illuminate\Support\Facades\App::class,
         'Artisan' => Illuminate\Support\Facades\Artisan::class,
         'Auth' => Illuminate\Support\Facades\Auth::class,

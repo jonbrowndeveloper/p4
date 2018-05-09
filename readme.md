@@ -9,6 +9,10 @@ also went through the [PHP Documentation](http://php.net/manual/en) for things l
 
 I checked out a few Stack Overflow posts for this project...
 
+https://stackoverflow.com/questions/34099777/laravel-5-1-validation-rule-alpha-cannot-take-whitespace
+
+Used [this package](https://packagist.org/packages/cohensive/embed) for embedding the YouTube videos
+
 ## Code style divergences
 - there are not any code style divergences
 
