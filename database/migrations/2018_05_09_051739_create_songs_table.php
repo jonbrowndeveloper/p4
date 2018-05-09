@@ -17,8 +17,9 @@ class CreateSongsTable extends Migration
             $table->increments('id');
             $table->timestamps();
             $table->string('song_name');
+            $table->string('artist');
             $table->string('song_url');
-            $table->string('song_embed_code');
+            $table->string('song_id');
             $table->string('song_comment');
         });
     }

@@ -20,8 +20,22 @@ class AppServiceProvider extends ServiceProvider
 
             // This will only accept alpha and spaces.
             // If you want to accept hyphens use: /^[\pL\s-]+$/u.
-            return preg_match('/^[\pL\s]+$/u', $value);
+            return preg_match('/^[a-z0-9 .\-]+$/i', $value);
 
+        });
+
+        Validator::extend('is_youtube', function ($attribute, $value) {
+
+            // checks to see if youtube is within the string
+
+            if (is_bool(strpos($value, 'youtube')))
+            {
+                return false;
+            }
+            else
+            {
+                return true;
+            }
         });
     }
 

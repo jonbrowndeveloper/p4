@@ -13,7 +13,7 @@
 
 Route::get('/', 'PageController@welcome');
 
-Route::get('/library', 'PageController@library');
+Route::get('/library', 'MusicController@library');
 
 Route::get('/add', 'PageController@add');
 Route::post('/library', 'MusicController@add');
@@ -21,3 +21,9 @@ Route::post('/library', 'MusicController@add');
 Route::get('/genres', 'PageController@genres');
 
 Route::get('/contact', 'PageController@contact');
+
+// get the route to edit a song
+
+Route::get('/songs/{id}/edit', 'MusicController@edit');
+
+Route::put('/songs/{id}','MusicController@update');

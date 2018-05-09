@@ -11,12 +11,6 @@ class PageController extends Controller
     {
         return view('welcome');
     }
-
-    public function library()
-    {
-        return view('music.library');
-    }
-
     public function add()
     {
         return view('music.add');
