@@ -32,5 +32,8 @@
 
 @stack('body')
 
+<br>
+<br>
+
 </body>
 </html>

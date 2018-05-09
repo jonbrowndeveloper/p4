@@ -6,8 +6,15 @@
 
 @section('content')
 
+    @if (isset($deleteMessage))
+        <div class='alert alert-success' role='alert'>
+            {{ $deleteMessage }}
+        </div>
+    @endif
+
     <h1>Songs</h1>
-    @if(count($songs) > 0)
+
+    @if(isset($songs))
         @foreach($songs as $song)
         <div class='container-fluid'>
             <div class="row">
@@ -20,8 +27,8 @@
                     <h4><i>{{ $song->song_comment }}</i></h4>
                 </div>
                 <div class="col-lg-4">
-                    <a href='/songs/{{ $song->id }}/edit' class='btn btn-primary' role='button'>Edit</a>
-                    <button type="button" class='btn btn-danger'>Delete</button>
+                    <a href='/songs/{{ $song->id }}/edit' name='editButton' class='btn btn-primary' role='button'>Edit</a>
+                    <a href='/songs/{{ $song->id }}/delete' name='deleteButton' class='btn btn-danger' role='button'>Delete</a>
                 </div>
             </div>
             <hr>

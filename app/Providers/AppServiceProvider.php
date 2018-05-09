@@ -20,7 +20,7 @@ class AppServiceProvider extends ServiceProvider
 
             // This will only accept alpha and spaces.
             // If you want to accept hyphens use: /^[\pL\s-]+$/u.
-            return preg_match('/^[a-z0-9 .\-]+$/i', $value);
+            return preg_match('/^[a-z0-9 &,.\-]+$/i', $value);
 
         });
 

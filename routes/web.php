@@ -18,7 +18,9 @@ Route::get('/library', 'MusicController@library');
 Route::get('/add', 'PageController@add');
 Route::post('/library', 'MusicController@add');
 
-Route::get('/genres', 'PageController@genres');
+Route::get('/genres', 'MusicController@genres');
+Route::post('/genres/add', 'MusicController@addGenre');
+Route::post('/genres/{id}', 'MusicController@updateGenre');
 
 Route::get('/contact', 'PageController@contact');
 
@@ -27,3 +29,9 @@ Route::get('/contact', 'PageController@contact');
 Route::get('/songs/{id}/edit', 'MusicController@edit');
 
 Route::put('/songs/{id}','MusicController@update');
+
+// separate page for delete verification
+
+Route::get('/songs/{id}/delete', 'MusicController@delete');
+
+Route::put('/songs/{id}/kill','MusicController@kill');

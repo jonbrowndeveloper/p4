@@ -5,21 +5,97 @@ namespace App\Http\Controllers;
 use Cohensive\Embed\Embed;
 use Illuminate\Http\Request;
 use App\Song;
+use App\Genre;
+use Illuminate\Support\Facades\Input;
 
 class MusicController extends Controller
 {
     /*
-     *  GET SONGS
+     *  GET SONGS FOR LIBRARY
      */
 
-     public function library()
-     {
-        $songs = Song::orderBy('song_id')->get();
+    public function library()
+    {
+        $songs = Song::orderBy('id')->get();
 
         return view('music.library')->with([
             'songs' => $songs
         ]);
-     }
+    }
+
+    /*
+     *  GET GENRES
+     */
+
+    public function genres()
+    {
+        $genres = Genre::orderBy('genre_name')->get();
+
+        return view('music.genres')->with([
+            'genres' => $genres,
+        ]);
+    }
+
+    /*
+    * UPDATE GENRES
+    */
+
+    public function addGenre(Request $request)
+    {
+        $this->validate($request, [
+            'genreName' => 'required|alpha_spaces'
+        ]);
+
+        $genre = new Genre();
+
+        $genre->genre_name = $request->genreName;
+
+        $genre->save();
+
+        // get Genres after update
+
+        $genres = Genre::orderBy('genre_name')->get();
+
+        return view('music.genres')->with([
+            'genres' => $genres,
+        ]);
+    }
+
+    /*
+     * UPDATE GENRES
+     */
+
+    public function updateGenre(Request $request, $id)
+    {
+        $this->validate($request, [
+            'genreName' => 'required|alpha_spaces',
+        ]);
+
+        $genre = Genre::find($id);
+
+        if(Input::get('update'))
+        {
+            $genre->genre_name = $request->input('genreName');
+            $genre->save();
+        }
+        else if(Input::get('delete'))
+        {
+            $genre->delete();
+        }
+
+        // get Genres after update
+
+        $genres = Genre::orderBy('genre_name')->get();
+
+        return view('music.genres')->with([
+            'genres' => $genres,
+        ]);
+
+    }
+
+    /*
+     * ADD SONG
+     */
 
     public function add(Request $request)
     {
@@ -37,8 +113,7 @@ class MusicController extends Controller
 
         $songComment = '';
 
-        if ($request->input('songComment') !== null)
-        {
+        if ($request->input('songComment') !== null) {
             $songComment = $request->input('songComment');
         }
 
@@ -48,12 +123,9 @@ class MusicController extends Controller
 
         // pull out the song id
 
-        if (preg_match('%(?:youtube(?:-nocookie)?\.com/(?:[^/]+/.+/|(?:v|e(?:mbed)?)/|.*[?&]v=)|youtu\.be/)([^"&?/ ]{11})%i', $songLink, $embed))
-        {
+        if (preg_match('%(?:youtube(?:-nocookie)?\.com/(?:[^/]+/.+/|(?:v|e(?:mbed)?)/|.*[?&]v=)|youtu\.be/)([^"&?/ ]{11})%i', $songLink, $embed)) {
             $embed = $embed[1];
-        }
-        else
-        {
+        } else {
             $embed = '';
         }
 
@@ -67,7 +139,9 @@ class MusicController extends Controller
         $song->song_comment = $songComment;
         $song->save();
 
-        // Save the song to the database...
+        // message when added
+
+        $songAddedMessage = $songName . ' has been added to your library';
 
         return view('music.add')->with([
             // add data to send here
@@ -75,84 +149,141 @@ class MusicController extends Controller
             'artist' => $artist,
             'songLink' => $songLink,
             'songComment' => $songComment,
-            'embed' => $embed
+            'embed' => $embed,
+            'songAddedMessage' => $songAddedMessage
         ]);
     }
 
     /*
-     * Edit Book
+     * Edit Song
      */
-     public function edit($id)
-     {
+    public function edit($id)
+    {
         $song = Song::find($id);
 
         // check if the song is actually there
-        if (!$song)
-        {
+        if (!$song) {
             return redirect('/library')->with([
-                dump('book not found')
+                dump('song not found')
             ]);
         }
 
-        // show the edit form
-        return view('music.edit')->with([
-            'song' => $song
-        ]);
-     }
+        $genres = Genre::orderBy('genre_name')->get();
 
-     public function update(Request $request, $id)
-     {
+        return view('music.edit')->with([
+            'song' => $song,
+            'genres' => $genres
+        ]);
+    }
+
+    public function update(Request $request, $id)
+    {
         // get the song we are going to update
 
         $song = Song::find($id);
 
-         $this->validate($request, [
-             'songName' => 'required|alpha_spaces',
-             'artist' => 'required|alpha_spaces',
-             'songLink' => 'required|active_url|is_youtube'
-         ]);
+        $this->validate($request, [
+            'songName' => 'required|alpha_spaces',
+            'artist' => 'required|alpha_spaces',
+            'songLink' => 'required|active_url|is_youtube'
+        ]);
 
-         // check if song comment is empty to avoid SQL NULL error
+        // check if song comment is empty to avoid SQL NULL error
 
-         $songComment = '';
+        $songComment = '';
 
-         if ($request->input('songComment') !== null)
-         {
-             $songComment = $request->input('songComment');
-         }
+        if ($request->input('songComment') !== null) {
+            $songComment = $request->input('songComment');
+        }
 
-         $songName = $request->input('songName');
-         $artist = $request->input('artist');
-         $songLink = $request->input('songLink');
+        $songName = $request->input('songName');
+        $artist = $request->input('artist');
+        $songLink = $request->input('songLink');
 
-         // make  embedded code  out of the original url
+        // make  embedded code  out of the original url
 
-         $embed = 'test';
+        $embed = 'test';
 
-         // pull out the song id
+        // pull out the song id
 
-         if (preg_match('%(?:youtube(?:-nocookie)?\.com/(?:[^/]+/.+/|(?:v|e(?:mbed)?)/|.*[?&]v=)|youtu\.be/)([^"&?/ ]{11})%i', $songLink, $embed))
-         {
-             $embed = $embed[1];
-         }
-         else
-         {
-             $embed = '';
-         }
+        if (preg_match('%(?:youtube(?:-nocookie)?\.com/(?:[^/]+/.+/|(?:v|e(?:mbed)?)/|.*[?&]v=)|youtu\.be/)([^"&?/ ]{11})%i', $songLink, $embed)) {
+            $embed = $embed[1];
+        } else {
+            $embed = '';
+        }
 
-         $song->song_name = $songName;
-         $song->artist = $artist;
-         $song->song_url = $songLink;
-         $song->song_id = $embed;
-         $song->song_comment = $songComment;
-         $song->save();
+        $song->song_name = $songName;
+        $song->artist = $artist;
+        $song->song_url = $songLink;
+        $song->song_id = $embed;
+        $song->song_comment = $songComment;
+        $song->save();
 
-         $updateMessage = 'Song ' . $songName . ' has been updated successfully';
+        $updateMessage = 'Song ' . $songName . ' has been updated successfully';
 
-         // go back to music library
-         return view('music.edit')->with([
-             'song' => $song,
-             'updateMessage' => $updateMessage
-         ]);
-     }
+        $genres = Genre::orderBy('genre_name')->get();
+
+        // return to view with current song and edit message
+        return view('music.edit')->with([
+            'song' => $song,
+            'genres' => $genres,
+            'updateMessage' => $updateMessage
+        ]);
+    }
+
+    /*
+     * Delete Song
+     */
+    public function delete(Request $request, $id)
+    {
+        $song = Song::find($id);
+
+        $deleteMessage = 'song not found';
+
+        // check if the song is actually there
+        if (!$song) {
+            return redirect('/library')->with([
+                'deleteMessage' => $deleteMessage
+            ]);
+        }
+
+        return view('music.delete')->with([
+            'song' => $song,
+            'deleteMessage' => $deleteMessage
+        ]);
+    }
+
+    /*
+     * Delete Song
+     */
+    public function kill($id)
+    {
+        $song = Song::find($id);
+
+        $songName = $song->song_name;
+
+        $deleteMessage = 'song not found';
+
+        // check if the song is actually there
+        if (!$song) {
+            return redirect('/music/library')->with([
+                'deleteMessage' => $deleteMessage
+            ]);
+        }
+
+        $song->delete();
+
+        $deleteMessage = $songName . ' has been deleted...';
+
+        // get the remaining songs and pass them along to the library view
+
+        $songs = Song::orderBy('id')->get();
+
+        return view('music.library')->with([
+
+            'deleteMessage' => $deleteMessage,
+            'songs' => $songs
+        ]);
+    }
+
 }

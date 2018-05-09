@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Genre;
 use Config;
 
 class PageController extends Controller
@@ -13,7 +14,11 @@ class PageController extends Controller
     }
     public function add()
     {
-        return view('music.add');
+        $genres = Genre::orderBy('genre_name')->get();
+
+        return view('music.add')->with([
+            'genres' => $genres
+        ]);
     }
 
     public function genres()
