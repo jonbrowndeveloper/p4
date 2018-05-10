@@ -36,11 +36,11 @@
                     </div>
                     <div class="col-lg-4">
                         <a href='/songs/{{ $song->id }}/edit'
-                           id='editButton'
+                           id='editButton{{ $song->id }}'
                            class='btn btn-primary'
                            role='button'>Edit</a>
                         <a href='/songs/{{ $song->id }}/delete'
-                           id='deleteButton'
+                           id='deleteButton{{ $song->id }}'
                            class='btn btn-danger'
                            role='button'>Delete</a>
                     </div>
