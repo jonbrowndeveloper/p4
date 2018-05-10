@@ -56,3 +56,6 @@ I checked out a few Stack Overflow posts for this project...
 ## Notes for instructor
 
 I will give a little background. I wanted to create a web application that used microphone input to then record and be saved to the web server. Sounded simple enough. However, I sunk around 15+ hours in this last week going through various forums and quasi walkthroughs to try and get it working. Unfortunately, I was not able to get all the javascript to work with laravel. So, around a day ago I scrapped the whole project and came up with this idea. While it isn't exactly what I was originally wanting to do, it gets the job done. 
+
+The application will take in a YouTube link as well as some form data and then store it within the database. It will then be able to be viewed, edited, or deleted from the main Library page.  
+

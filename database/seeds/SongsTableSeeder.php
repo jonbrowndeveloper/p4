@@ -20,9 +20,9 @@ class SongsTableSeeder extends Seeder
             ['Transatlanticism', 'Death Cab for Cutie','https://www.youtube.com/watch?v=-3b6hDCIeDk','3b6hDCIeDk','I love just how long the intro is...'],
             ['Plans - Full Album', 'Death Cab for Cutie','https://www.youtube.com/watch?v=G7f4K3aVMrk','G7f4K3aVMrk','a full album because why not'],
             ['Give Up', 'The Postal Service','https://www.youtube.com/watch?v=oPwXHSqFl9Q','oPwXHSqFl9Q','another full one'],
-            ['Thank God Im a Country Boy', 'John Denver','https://www.youtube.com/watch?v=QRuCPS_-_IA','QRuCPS_-_IA',''],
-            ['Rocky Mountain High', 'John Denver','https://www.youtube.com/watch?v=eOB4VdlkzO4','eOB4VdlkzO4',''],
-            ['Take Me Home, Country Roads', 'John Denver','https://www.youtube.com/watch?v=1vrEljMfXYo','1vrEljMfXYo',''],
+            ['Thank God Im a Country Boy', 'John Denver','https://www.youtube.com/watch?v=QRuCPS_-_IA','QRuCPS_-_IA','amazing'],
+            ['Rocky Mountain High', 'John Denver','https://www.youtube.com/watch?v=eOB4VdlkzO4','eOB4VdlkzO4','every time im in the mountains'],
+            ['Take Me Home, Country Roads', 'John Denver','https://www.youtube.com/watch?v=1vrEljMfXYo','1vrEljMfXYo','so serene'],
         ];
 
         foreach ($songs as $key => $songData)

@@ -27,7 +27,6 @@
                         <iframe width="280"
                                 height="158"
                                 src="http://www.youtube.com/embed/{{$song->song_id}}"
-                                frameborder="4"
                                 allowfullscreen></iframe>
                     </div>
                     <div class="col-lg-4">
@@ -37,11 +36,11 @@
                     </div>
                     <div class="col-lg-4">
                         <a href='/songs/{{ $song->id }}/edit'
-                           name='editButton'
+                           id='editButton'
                            class='btn btn-primary'
                            role='button'>Edit</a>
                         <a href='/songs/{{ $song->id }}/delete'
-                           name='deleteButton'
+                           id='deleteButton'
                            class='btn btn-danger'
                            role='button'>Delete</a>
                     </div>
