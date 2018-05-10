@@ -161,10 +161,12 @@ class MusicController extends Controller
     {
         $song = Song::find($id);
 
+        $songAddedMessage = "song not found";
+
         // check if the song is actually there
         if (!$song) {
             return redirect('/library')->with([
-                dump('song not found')
+                'songAddedMessage' = $songAddedMessage
             ]);
         }
 
