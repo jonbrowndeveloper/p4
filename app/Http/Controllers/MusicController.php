@@ -166,7 +166,7 @@ class MusicController extends Controller
         // check if the song is actually there
         if (!$song) {
             return redirect('/library')->with([
-                'songAddedMessage' = $songAddedMessage
+                'songAddedMessage' => $songAddedMessage
             ]);
         }
 
