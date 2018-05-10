@@ -19,8 +19,8 @@ class Controller extends BaseController
         $nav = [
             'library' => 'Library',
             'add' => 'Add Music',
-            'genres' => 'Genres',
-            'contact' => 'Contact',
+            // 'genres' => 'Genres', ***REMOVED***
+            // 'contact' => 'Contact',
         ];
         View::share(['nav' => $nav]);
     }

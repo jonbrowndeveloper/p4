@@ -12,6 +12,11 @@
         </div>
     @endif
 
+    @if (isset($songAddedMessage))
+        <div class='alert alert-success' role='alert'>
+            {{ $songAddedMessage }}
+        </div>
+    @endif
     <h1>Songs</h1>
 
     @if(isset($songs))

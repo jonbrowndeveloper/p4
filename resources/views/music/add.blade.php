@@ -14,12 +14,6 @@
                 </div>
                 <div class="col-lg-5">
                     <h1>Add a Youtube link here!</h1>
-                    @if (isset($songAddedMessage))
-                        <div class='alert alert-success' role='alert'>
-                            {{ $songAddedMessage }}
-                        </div>
-                    @endif
-
                     <div class='details'>* Required fields</div>
 
                     <br>
@@ -84,7 +78,6 @@
                                            name='genreIDs[]'
                                            id="{{ $genre->genre_name }}CheckBox"> {{ $genre->genre_name }}
                                 </label>
-                                {{ '               ' }}
                             @endforeach
                         @endif
                     </div>

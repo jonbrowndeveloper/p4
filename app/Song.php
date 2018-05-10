@@ -10,5 +10,4 @@ class Song extends Model
     {
         return $this->belongsToMany('App\Genre')->withTimestamps();
     }
-
 }

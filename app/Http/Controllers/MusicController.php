@@ -80,6 +80,8 @@ class MusicController extends Controller
         }
         else if(Input::get('delete'))
         {
+            $genre->songs()->detach();
+
             $genre->delete();
         }
 
@@ -141,17 +143,17 @@ class MusicController extends Controller
 
         $song->genres()->sync($request->input('genreIDs'));
 
+        // get updated genres
+
+        $songs = Song::orderBy('id')->get();
+
         // message when added
 
         $songAddedMessage = $songName . ' has been added to your library';
 
-        return view('music.add')->with([
+        return view('/music/library')->with([
             // add data to send here
-            'songName' => $songName,
-            'artist' => $artist,
-            'songLink' => $songLink,
-            'songComment' => $songComment,
-            'embed' => $embed,
+            'songs' => $songs,
             'songAddedMessage' => $songAddedMessage
         ]);
     }
@@ -275,6 +277,8 @@ class MusicController extends Controller
                 'deleteMessage' => $deleteMessage
             ]);
         }
+
+        $song->genres()->detach();
 
         $song->delete();
 
