@@ -37,7 +37,7 @@ class MusicController extends Controller
     }
 
     /*
-    * UPDATE GENRES
+    * ADD GENRES *** CURRENTLY NOT IN USE ***
     */
 
     public function addGenre(Request $request)
@@ -62,7 +62,7 @@ class MusicController extends Controller
     }
 
     /*
-     * UPDATE GENRES
+     * UPDATE GENRES *** CURRENTLY NOT IN USE ***
      */
 
     public function updateGenre(Request $request, $id)
@@ -73,13 +73,10 @@ class MusicController extends Controller
 
         $genre = Genre::find($id);
 
-        if(Input::get('update'))
-        {
+        if (Input::get('update')) {
             $genre->genre_name = $request->input('genreName');
             $genre->save();
-        }
-        else if(Input::get('delete'))
-        {
+        } else if (Input::get('delete')) {
             $genre->songs()->detach();
 
             $genre->delete();
@@ -92,7 +89,6 @@ class MusicController extends Controller
         return view('music.genres')->with([
             'genres' => $genres,
         ]);
-
     }
 
     /*
@@ -173,7 +169,6 @@ class MusicController extends Controller
         }
 
         $genres = Genre::orderBy('genre_name')->get();
-
 
         return view('music.edit')->with([
             'song' => $song,
@@ -263,7 +258,7 @@ class MusicController extends Controller
     /*
      * Delete Song
      */
-    public function kill($id)
+    public function kill(Request $request, $id)
     {
         $song = Song::find($id);
 
@@ -271,28 +266,37 @@ class MusicController extends Controller
 
         $deleteMessage = 'song not found';
 
-        // check if the song is actually there
-        if (!$song) {
-            return redirect('/music/library')->with([
-                'deleteMessage' => $deleteMessage
-            ]);
-        }
-
-        $song->genres()->detach();
-
-        $song->delete();
-
-        $deleteMessage = $songName . ' has been deleted...';
-
-        // get the remaining songs and pass them along to the library view
-
         $songs = Song::orderBy('id')->get();
 
-        return view('music.library')->with([
+        if (Input::get('cancel')) {
+            return view('music.library')->with([
 
-            'deleteMessage' => $deleteMessage,
-            'songs' => $songs
-        ]);
+                'songs' => $songs
+            ]);
+        } else if (Input::get('delete')) {
+            // check if the song is actually there
+            if (!$song) {
+                return redirect('/music/library')->with([
+                    'deleteMessage' => $deleteMessage
+                ]);
+            }
+
+            $song->genres()->detach();
+
+            $song->delete();
+
+            $deleteMessage = $songName . ' has been deleted...';
+
+            // get the remaining songs and pass them along to the library view
+
+            $songs = Song::orderBy('id')->get();
+
+            return view('music.library')->with([
+
+                'deleteMessage' => $deleteMessage,
+                'songs' => $songs
+            ]);
+        }
     }
 
 }

@@ -45,13 +45,27 @@
                     {{ csrf_field() }}
                     <div class="row">
                         <div class="col-lg-4">
-                            <input type="text" class="form-control" value='{{ $genre->genre_name }}' name='genreName' id='genreName'>
+                            <input type="text"
+                                   class="form-control"
+                                   value='{{ $genre->genre_name }}'
+                                   name='genreName'
+                                   id='genreName'>
                         </div>
                         <div class="col-lg-6">
                         </div>
                         <div class="col-lg-2">
-                            <button type="submit" name='update' value='Update' class='btn btn-primary' role='button'>Update</button>
-                            <button type="submit" name='delete' value='Delete' class='btn btn-danger' role='button'>Delete</button>
+                            <button type="submit"
+                                    name='update'
+                                    value='Update'
+                                    class='btn btn-primary'
+                                    role='button'>Update
+                            </button>
+                            <button type="submit"
+                                    name='delete'
+                                    value='Delete'
+                                    class='btn btn-danger'
+                                    role='button'>Delete
+                            </button>
                         </div>
                     </div>
                 </form>

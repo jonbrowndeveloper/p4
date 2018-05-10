@@ -11,7 +11,7 @@
 |
 */
 
-Route::get('/', 'PageController@welcome');
+Route::get('/', 'MusicController@library');
 
 Route::get('/library', 'MusicController@library');
 
@@ -19,10 +19,6 @@ Route::get('/add', 'PageController@add');
 Route::post('/library', 'MusicController@add');
 
 Route::get('/genres', 'MusicController@genres');
-Route::post('/genres/add', 'MusicController@addGenre');
-Route::post('/genres/{id}', 'MusicController@updateGenre');
-
-Route::get('/contact', 'PageController@contact');
 
 // get the route to edit a song
 
@@ -35,3 +31,10 @@ Route::put('/songs/{id}','MusicController@update');
 Route::get('/songs/{id}/delete', 'MusicController@delete');
 
 Route::put('/songs/{id}/kill','MusicController@kill');
+
+// currently not in use due to SQL errors in database
+
+Route::post('/genres/add', 'MusicController@addGenre');
+Route::post('/genres/{id}', 'MusicController@updateGenre');
+
+Route::get('/contact', 'PageController@contact');

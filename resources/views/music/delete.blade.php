@@ -11,8 +11,8 @@
         {{ method_field('put') }}
         {{ csrf_field() }}
 
-        <button type="submit" name='cancelButton' class='btn btn-primary' role='button'>No Way!</button>
-        <button type="submit" name='deleteButton' class='btn btn-danger' role='button'>Yes I'm Sure</button>
+        <button type="submit" name='cancel' value='cancel' class='btn btn-primary' role='button'>No Way!</button>
+        <button type="submit" name='delete' value='delete' class='btn btn-danger' role='button'>Yes I'm Sure</button>
     </form>
 
 @endsection
