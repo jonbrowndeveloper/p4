@@ -26,7 +26,7 @@
                     <div class='details'>* Required fields</div>
 
                     <br>
-                    <label for='title'>* Song Name</label>
+                    <label for='songName'>* Song Name</label>
                     <input type="text"
                            class="form-control"
                            placeholder="Song Name"
@@ -34,7 +34,7 @@
                            name='songName'
                            id='songName'>
                     <br>
-                    <label for='title'>* Artist</label>
+                    <label for='artist'>* Artist</label>
                     <input type="text"
                            class="form-control"
                            placeholder="Artist Name"
@@ -42,7 +42,7 @@
                            name='artist'
                            id='artist'>
                     <br>
-                    <label for='title'>* Link</label>
+                    <label for='songLink'>* Link</label>
                     <input type="text"
                            class="form-control"
                            placeholder="Youtube Link"
@@ -50,7 +50,7 @@
                            name='songLink'
                            id='songLink'>
                     <br>
-                    <label for='title'>Comment</label>
+                    <label for='songComment'>Comment</label>
                     <input type="text"
                            class="form-control"
                            placeholder="Add a comment about this music..."
@@ -87,7 +87,7 @@
                                     <input type="checkbox"
                                            name='genreIDs[]'
                                            value="{{ $genre->id }}"
-                                           id="{{ $genre->genre_name }}CheckBox"
+                                           id="CheckBox{{ $genre->id }}"
                                     @foreach ($song->genres as $genreInLoop)
                                         @if($genreInLoop->genre_name == $genre->genre_name)
                                             {{ 'checked' }}
