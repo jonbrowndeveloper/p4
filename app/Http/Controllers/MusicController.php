@@ -139,6 +139,8 @@ class MusicController extends Controller
         $song->song_comment = $songComment;
         $song->save();
 
+        $song->genres()->sync($request->input('genreIDs'));
+
         // message when added
 
         $songAddedMessage = $songName . ' has been added to your library';
@@ -169,6 +171,7 @@ class MusicController extends Controller
         }
 
         $genres = Genre::orderBy('genre_name')->get();
+
 
         return view('music.edit')->with([
             'song' => $song,
@@ -218,6 +221,8 @@ class MusicController extends Controller
         $song->song_id = $embed;
         $song->song_comment = $songComment;
         $song->save();
+
+        $song->genres()->sync($request->input('genreIDs'));
 
         $updateMessage = 'Song ' . $songName . ' has been updated successfully';
 

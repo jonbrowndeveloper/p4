@@ -16,6 +16,7 @@
                 <div class="col-lg-5">
                     <h1>Edit</h1>
 
+
                     @if (isset($updateMessage))
                         <div class='alert alert-success' role='alert'>
                             {{ $updateMessage }}
@@ -84,8 +85,15 @@
                             @foreach($genres as $key => $genre)
                                 <label class="checkbox">
                                     <input type="checkbox"
-                                           value="{{ $genre->genre_name }}"
-                                           id="{{ $genre->genre_name }}CheckBox"> {{ $genre->genre_name }}
+                                           name='genreIDs[]'
+                                           value="{{ $genre->id }}"
+                                           id="{{ $genre->genre_name }}CheckBox"
+                                    @foreach ($song->genres as $genreInLoop)
+                                        @if($genreInLoop->genre_name == $genre->genre_name)
+                                            {{ 'checked' }}
+                                            @endif
+                                        @endforeach
+                                    > {{ $genre->genre_name }}
                                 </label>
                             @endforeach
                         @endif

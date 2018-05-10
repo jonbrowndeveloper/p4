@@ -80,7 +80,8 @@
                             @foreach($genres as $key => $genre)
                                 <label class="checkbox">
                                     <input type="checkbox"
-                                           value="{{ $genre->genre_name }}"
+                                           value="{{ $genre->id }}"
+                                           name='genreIDs[]'
                                            id="{{ $genre->genre_name }}CheckBox"> {{ $genre->genre_name }}
                                 </label>
                                 {{ '               ' }}

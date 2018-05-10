@@ -2,6 +2,8 @@
 
 use Illuminate\Database\Seeder;
 use App\Genre;
+use App\Song;
+
 
 class GenresTableSeeder extends Seeder
 {
@@ -12,7 +14,7 @@ class GenresTableSeeder extends Seeder
      */
     public function run()
     {
-        $genres = ['Blues','Brass & Military','Children','Classical','Electronic','Folk, World, & Country', 'Funk / Soul', 'Hip-Hop', 'Jazz', 'Latin', 'Pop','Raggae','Rock','Stage & Screen','Soundtrack'];
+        $genres = ['Rock','Pop','Soundtrack','Blues','Brass & Military','Children','Classical','Electronic','Folk, World, & Country', 'Funk / Soul', 'Hip-Hop', 'Jazz', 'Latin'];
 
         foreach ($genres as $genreName)
         {
